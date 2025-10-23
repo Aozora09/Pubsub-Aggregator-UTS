@@ -108,18 +108,21 @@ docker run -d -p 8080:8080 \
 
 **Langkah 3: Uji dengan Postman / Curl Server aggregator Anda sekarang berjalan di http://localhost:8080.**
 
-## Asumsi Desain
-# ● Konsistensi > Performa: Sistem ini menggunakan SQLite dengan background worker tunggal untuk penulisan ke DB. Ini menjamin konsistensi data (tidak ada race condition penulisan) dengan mengorbankan throughput paralel.
+---
+## 4. Asumsi Desain
+● Konsistensi > Performa: Sistem ini menggunakan SQLite dengan background worker tunggal untuk penulisan ke DB. Ini menjamin konsistensi data (tidak ada race condition penulisan) dengan mengorbankan throughput paralel.
 
-# ● Ordering: Total ordering (urutan event) tidak dijamin. Sistem ini hanya menjamin deduplication (setiap event unik diproses sekali).
+● Ordering: Total ordering (urutan event) tidak dijamin. Sistem ini hanya menjamin deduplication (setiap event unik diproses sekali).
 
-# ● At-Least-Once: Publisher dirancang untuk mengirim duplikat (atau event acak), mensimulasikan at-least-once delivery. Aggregator dirancang untuk idempotent terhadap skenario ini.
+● At-Least-Once: Publisher dirancang untuk mengirim duplikat (atau event acak), mensimulasikan at-least-once delivery. Aggregator dirancang untuk idempotent terhadap skenario ini.
+---
+---
+## 5. Endpoints API
+● POST /publish: Menerima satu event atau batch event (array JSON).
 
-## Endpoints API
-# ● POST /publish: Menerima satu event atau batch event (array JSON).
+● GET /stats: Menampilkan statistik pemrosesan (received_events, unique_events, duplicates, dll).
 
-# ● GET /stats: Menampilkan statistik pemrosesan (received_events, unique_events, duplicates, dll).
+● GET /events: Mengembalikan daftar semua event unik yang telah diproses.
 
-# ● GET /events: Mengembalikan daftar semua event unik yang telah diproses.
-
-# ● Parameter Opsional: GET /events?topic=NAMA_TOPIK
+● Parameter Opsional: GET /events?topic=NAMA_TOPIK
+---
