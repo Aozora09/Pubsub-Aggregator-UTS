@@ -115,6 +115,7 @@ docker run -d -p 8080:8080 \
 ● Ordering: Total ordering (urutan event) tidak dijamin. Sistem ini hanya menjamin deduplication (setiap event unik diproses sekali).
 
 ● At-Least-Once: Publisher dirancang untuk mengirim duplikat (atau event acak), mensimulasikan at-least-once delivery. Aggregator dirancang untuk idempotent terhadap skenario ini.
+
 ---
 ---
 ## 5. Endpoints API
@@ -125,4 +126,5 @@ docker run -d -p 8080:8080 \
 ● GET /events: Mengembalikan daftar semua event unik yang telah diproses.
 
 ● Parameter Opsional: GET /events?topic=NAMA_TOPIK
+
 ---
