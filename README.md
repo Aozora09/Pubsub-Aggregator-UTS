@@ -1,9 +1,10 @@
 # Proyek Aggregator Event (UTS Sistem Terdistribusi)
-
+---
 Proyek ini adalah implementasi dari sistem _event aggregator_ yang tangguh (robust), _idempotent_, dan _persistent_. Sistem ini dibangun menggunakan Python (FastAPI), SQLite, dan di-kontainerisasi dengan Docker.
 
 Arsitektur ini dirancang untuk menangani pengiriman _event_ "at-least-once" dengan memastikan tidak ada duplikasi data yang diproses, bahkan jika server mengalami _restart_ atau _crash_.
 
+---
 ---
 
 ## 1. Tautan Deliverables
@@ -18,13 +19,12 @@ Arsitektur ini dirancang untuk menangani pengiriman _event_ "at-least-once" deng
 
 ## 2. Struktur Repositori
 
+```bash
+
 / (PUBSUB_AGGREGATOR) ├── .gitignore # Mengabaikan file .venv, pycache, .db, dll. ├── Dockerfile # Instruksi untuk membangun image aggregator ├── docker-compose.yml # (Bonus) Menjalankan aggregator & publisher bersamaan ├── main.py # Titik masuk (entrypoint) FastAPI/Uvicorn ├── publisher.py # Skrip publisher untuk demo at-least-once ├── pytest.ini # Konfigurasi untuk Pytest ├── README.md <-- File utama (dokumentasi ini) ├── report.pdf <-- LOKASI LAPORAN ├── requirements.txt # Daftar dependensi Python ├── stress_test.py # Skrip untuk demo skala uji (5.000+ event) │ ├── src/ <-- Kode sumber utama aplikasi │ ├── init.py │ ├── aggregator.py <-- Logika inti (worker, queue, stats) │ ├── dedup_store.py <-- Logika persistensi SQLite │ └── models.py <-- Model data Pydantic │ └── tests/ <-- Unit tests ├── init.py ├── conftest.py └── test_main.py
-
 ```
 
-
 ```
-
 ## 3. Cara Build & Run
 
 Ada dua cara untuk menjalankan proyek ini. Cara (A) adalah yang paling direkomendasikan untuk demo penuh.
