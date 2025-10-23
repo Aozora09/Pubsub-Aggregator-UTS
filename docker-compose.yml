@@ -1,0 +1,24 @@
+version: "3.8"
+
+services:
+  aggregator:
+    build: .
+    container_name: aggregator_service
+    ports:
+      - "8080:8080"
+    volumes:
+      # Menggunakan named volume yang dikelola Docker
+      # Ini akan otomatis menangani izin untuk 'appuser'
+      - aggregator_data:/app/data
+
+  publisher:
+    build: .
+    container_name: publisher_service
+    command: ["python", "publisher.py"]
+    depends_on:
+      - aggregator
+    # Seluruh bagian 'volumes:' sudah dihapus dari sini
+
+# Definisikan 'named volume' di level root
+volumes:
+  aggregator_data:

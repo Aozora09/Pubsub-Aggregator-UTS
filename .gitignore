@@ -1,0 +1,18 @@
+# Python cache & virtual environment
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.env
+
+# Database & Data Persistent (SANGAT PENTING!)
+# Kita tidak pernah mengunggah database atau data, hanya kode.
+*.db
+*.db-journal
+/data/
+
+# Docker (jika ada file sisa)
+.dockerignore
+
+# VS Code
+.vscode/
