@@ -14,6 +14,8 @@ Arsitektur ini dirancang untuk menangani pengiriman _event_ "at-least-once" deng
 
 ---
 
+---
+
 ## 2. Struktur Repositori
 
 / (PUBSUB_AGGREGATOR) ├── .gitignore # Mengabaikan file .venv, pycache, .db, dll. ├── Dockerfile # Instruksi untuk membangun image aggregator ├── docker-compose.yml # (Bonus) Menjalankan aggregator & publisher bersamaan ├── main.py # Titik masuk (entrypoint) FastAPI/Uvicorn ├── publisher.py # Skrip publisher untuk demo at-least-once ├── pytest.ini # Konfigurasi untuk Pytest ├── README.md <-- File utama (dokumentasi ini) ├── report.pdf <-- LOKASI LAPORAN ├── requirements.txt # Daftar dependensi Python ├── stress_test.py # Skrip untuk demo skala uji (5.000+ event) │ ├── src/ <-- Kode sumber utama aplikasi │ ├── init.py │ ├── aggregator.py <-- Logika inti (worker, queue, stats) │ ├── dedup_store.py <-- Logika persistensi SQLite │ └── models.py <-- Model data Pydantic │ └── tests/ <-- Unit tests ├── init.py ├── conftest.py └── test_main.py
